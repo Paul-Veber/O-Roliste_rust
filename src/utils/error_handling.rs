@@ -38,7 +38,7 @@ fn get_error_response<B>(res: &ServiceResponse<B>, error: &str) -> HttpResponse 
             let mut context = tera::Context::new();
             context.insert("error", error);
             context.insert("status_code", res.status().as_str());
-            let body = tera.render("pages/error.html", &context);
+            let body = tera.render("pages/error.jinja", &context);
 
             match body {
                 Ok(body) => HttpResponse::build(res.status())
